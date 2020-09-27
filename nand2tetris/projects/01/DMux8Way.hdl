@@ -17,4 +17,12 @@ CHIP DMux8Way {
 
     PARTS:
     // Put your code here:
+    // nsh - not sel high
+    Not (in=sel[2], out=nsh);
+    And (a=in, b=nsh, out=abcdin);
+    DMux4Way (in=abcdin, sel=sel[0..1], a=a, b=b, c=c, d=d);
+
+    And (a=in, b=sel[2], out=efghin);
+    DMux4Way (in=efghin, sel=sel[0..1], a=e, b=f, c=g, d=h);
+
 }

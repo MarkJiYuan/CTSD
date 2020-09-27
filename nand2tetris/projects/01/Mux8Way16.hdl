@@ -19,4 +19,21 @@ CHIP Mux8Way16 {
 
     PARTS:
     // Put your code here:
+    // nsh - not sel high
+
+    Not (in=sel[2], out=nsh);
+    Mux4Way16(a=a, b=b, c=c, d=d, sel=[0..1], out=abcdMux);
+    And16 (a[0]=nsh, a[1]=nsh, a[2]=nsh, a[3]=nsh, a[4]=nsh,
+           a[5]=nsh, a[6]=nsh, a[7]=nsh, a[8]=nsh, a[9]=nsh,
+           a[10]=nsh, a[11]=nsh, a[12]=nsh, a[13]=nsh, a[14]=nsh,
+           a[15]=nsh, b=abcdMux, out=abcd);
+
+
+    Mux4Way16(a=e, b=f, c=g, d=h, sel=[0..1], out=efghMux);
+    And16 (a[0]=sel[2], a[1]=sel[2], a[2]=sel[2], a[3]=sel[2], a[4]=sel[2],
+           a[5]=sel[2], a[6]=sel[2], a[7]=sel[2], a[8]=sel[2], a[9]=sel[2],
+           a[10]=sel[2], a[11]=sel[2], a[12]=sel[2], a[13]=sel[2], a[14]=sel[2],
+           a[15]=sel[2], b=efghMux, out=efgh);
+    Or16 (a=abcd, b=efgh, out=out);
+
 }

@@ -17,4 +17,22 @@ CHIP Mux4Way16 {
 
     PARTS:
     // Put your code here:
+    // 有不这么蠢的方法吗？
+    // nsh - not sel high
+    Not (in=sel[1], out=nsh);
+    Mux16 (a=a, b=b, sel=sel[0], out=aMuxb);
+    And16 (a[0]=nsh, a[1]=nsh, a[2]=nsh, a[3]=nsh, a[4]=nsh,
+           a[5]=nsh, a[6]=nsh, a[7]=nsh, a[8]=nsh, a[9]=nsh,
+           a[10]=nsh, a[11]=nsh, a[12]=nsh, a[13]=nsh, a[14]=nsh,
+           a[15]=nsh, b=aMuxb, out=aAndb);
+
+    Mux16 (a=c, b=d, sel=sel[0], out=cMuxd);
+    // And16 (a=false, b=cMuxd, out=cAndd);
+    And16 (a[0]=sel[1], a[1]=sel[1], a[2]=sel[1], a[3]=sel[1], a[4]=sel[1],
+           a[5]=sel[1], a[6]=sel[1], a[7]=sel[1], a[8]=sel[1], a[9]=sel[1],
+           a[10]=sel[1], a[11]=sel[1], a[12]=sel[1], a[13]=sel[1], a[14]=sel[1],
+           a[15]=sel[1], b=cMuxd, out=cAndd);
+
+    Or16 (a=aAndb, b=cAndd, out=out);
+
 }
