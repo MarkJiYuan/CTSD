@@ -43,4 +43,42 @@ CHIP ALU {
 
     PARTS:
    // Put you code here:
+
+   // Process zx
+   Not(in=zx, out=nzx);
+   Extend16(in=nzx, out=nzx16);
+   And16(a=x, b=nzx16, out=x1);
+
+   // Process nx
+   Not16(in=x1, out=nx1);
+   Mux16(a=x1, b=nx1, sel=nx, out=x2);
+
+   // Process zy
+   Not(in=zy, out=nzy);
+   Extend16(in=nzy, out=nzy16);
+   And16(a=y, b=nzy16, out=y1);
+
+   // Process ny
+   Not16(in=y1, out=ny1);
+   Mux16(a=y1, b=ny1, sel=ny, out=y2);
+
+   // Procees f
+   And16(a=x2, b=y2, out=xandy);
+   Add16(a=x2, b=y2, out=xplusy);
+   Mux16(a=xandy, b=xplusy, sel=f, out=result);
+
+   // Process no
+   Not16(in=result, out=nresult);
+   Mux16(a=result, b=nresult, sel=no, out=tempout);
+
+   // Calculate zr
+   Or16Way(in=tempout, out=nzr);
+   Not(in=nzr, out=zr);
+
+   // Calculate ng
+   Select16high(in=tempout, out=ng);
+
+   // Final output
+   And16(a=tempout, b=true, out=out);
+
 }
