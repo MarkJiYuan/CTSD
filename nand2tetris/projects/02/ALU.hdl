@@ -45,18 +45,14 @@ CHIP ALU {
    // Put you code here:
 
    // Process zx
-   Not(in=zx, out=nzx);
-   Extend16(in=nzx, out=nzx16);
-   And16(a=x, b=nzx16, out=x1);
+   Mux16(a=x, b=false, sel=zx, out=x1);
 
    // Process nx
    Not16(in=x1, out=nx1);
    Mux16(a=x1, b=nx1, sel=nx, out=x2);
 
    // Process zy
-   Not(in=zy, out=nzy);
-   Extend16(in=nzy, out=nzy16);
-   And16(a=y, b=nzy16, out=y1);
+   Mux16(a=y, b=false, sel=zy, out=y1);
 
    // Process ny
    Not16(in=y1, out=ny1);
@@ -69,16 +65,14 @@ CHIP ALU {
 
    // Process no
    Not16(in=result, out=nresult);
-   Mux16(a=result, b=nresult, sel=no, out=tempout);
+   Mux16(a=result, b=nresult, sel=no, 
+         out=out, out[0..7]=zr1, out[8..15]=zr2, out[15]=ng);
 
    // Calculate zr
-   Or16Way(in=tempout, out=nzr);
+   Or8Way(in=zr1, out=or0);
+   Or8Way(in=zr2, out=or1);
+   Or(a=or0, b=or1, out=nzr);
    Not(in=nzr, out=zr);
 
-   // Calculate ng
-   Select16high(in=tempout, out=ng);
-
-   // Final output
-   And16(a=tempout, b=true, out=out);
-
+   // No need to calculate ng
 }
