@@ -52,6 +52,20 @@ Computational Thinking &amp; System Design
 + 第十二周的Sys看了看，但是没什么头绪，不知道怎么下手。。可能需要先看下11周和12周的视频
 
 
+## 2020-10-07
+
++ [Hyper Threading Explained](https://www.youtube.com/watch?v=lrT9Bl0MCXQ): Intel提出的概念，可以虚拟两倍的核。操作系统对任务进行负载均衡。提高pipeline的效率。在计算密集且任务可分解的情况下效果很好。
++ [AMD CPU发展史](https://www.youtube.com/watch?v=CHERD3gVF98): CPU设计要不断进行trade off。性能与能耗的权衡、CPU和显卡的平衡、核数和频率等等。最后AMD真是一家神奇的公司。
+
+## 2020-10-08
++ 完成了Week4的作业：虽然一开始写起来不是很习惯，但是后来就觉得很爽了。以及深刻地感受到了一旦代码逻辑变复杂之后汇编是多么地不利于维护
+
+
+
+
+
+
+
 
 
 
