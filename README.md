@@ -61,6 +61,28 @@ Computational Thinking &amp; System Design
 + 完成了Week4的作业：虽然一开始写起来不是很习惯，但是后来就觉得很爽了。以及深刻地感受到了一旦代码逻辑变复杂之后汇编是多么地不利于维护
 
 
+## 2020-10-13
+上课笔记：
++ 量子计算
++ CAPTCHA
++ Agent based architectures
++ Net logo
++ Q bit, Quantum Terminology
++ kframework
++ Paxos
++ Raft
++ Symmetry/Symmetry-breaking
+
+
+
+
+
+
+
+
+
+
+
 
 
 
